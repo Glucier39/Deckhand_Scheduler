@@ -13,9 +13,9 @@ client = Client(TWILIO_SID, TWILIO_TOKEN)
 
 # ✅ Trusted deckhands
 TRUSTED_NUMBERS = [
-    "+12065551111",  # Deckhand 1
-    "+12068882222",  # Deckhand 2
-    "+12067773333",  # Deckhand 3
+    "+12062915442",  # Deckhand 1
+    "+12065194774",  # Deckhand 2
+    "+14256268364",  # Deckhand 3
 ]
 
 # ✅ Trip state
