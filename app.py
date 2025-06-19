@@ -1,8 +1,9 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
+# Global variables to track trip status
 current_trip = None
 claimed_by = None
 
@@ -13,7 +14,8 @@ def home():
 @app.route("/sms", methods=["POST"])
 def sms_reply():
     global current_trip, claimed_by
-    msg = request.form.get('Body').strip().lower()
+
+    msg = request.form.get('Body', '').strip().lower()
     sender = request.form.get('From')
     resp = MessagingResponse()
 
@@ -30,12 +32,11 @@ def sms_reply():
         else:
             resp.message("Sorry, that trip has already been claimed.")
     else:
-        resp.message("Send 'Trip June 25 6AM' or reply 'Y' to claim.")
+        resp.message("Send 'Trip June 28 6AM' or reply 'Y' to claim.")
 
-    return str(resp)
+    return Response(str(resp), mimetype="application/xml")
 
 if __name__ == "__main__":
-    app.run(port=5000)
-
+    app.run()
 
 
